@@ -1,7 +1,0 @@
-package Parser;
-
-import java.net.URI;
-
-public class UriParser URI{
-
-}

@@ -8,7 +8,6 @@
 <fullyQualifiedTypeName name="handler.Handler"/>
 <fullyQualifiedTypeName name="modules.Handler"/>
 <fullyQualifiedTypeName name="modules.Handler.Type"/>
-<fullyQualifiedTypeName name="modules.HttpRequestHandler"/>
 <fullyQualifiedTypeName name="logmanager.Logger"/>
 <fullyQualifiedTypeName name="exceptions.IllegalConfigurationException"/>
 <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
@@ -28,4 +27,5 @@
 <fullyQualifiedTypeName name="java.net.URLDecoder"/>
 <fullyQualifiedTypeName name="java.net.URI"/>
 <fullyQualifiedTypeName name="Parser.UriParser"/>
+<fullyQualifiedTypeName name="modules.HttpRequestHandler"/>
 </qualifiedTypeNameHistroy>
