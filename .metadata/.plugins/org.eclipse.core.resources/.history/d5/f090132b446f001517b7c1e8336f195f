@@ -1,0 +1,60 @@
+package core;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.concurrent.Executor;
+
+import exceptions.IllegalConfigurationException;
+import logmanager.Logger;
+import logmanager.Logger.Output;
+import modules.RequestHandler;
+import modules.RequestHandler.HandlerType;
+
+public class IcyWrench {
+
+	public static final int SERVER_PORT = 12345;
+	public static final int THREAD_COUNT = Runtime.getRuntime().availableProcessors();
+	public Logger logger;
+	
+	private ServerSocket serverSocket;
+	private Executor exec;
+	private HandlerType handlerType;
+	
+	public IcyWrench() {
+		
+
+		handlerType = RequestHandler.HandlerType.HTTP;
+		logger = Logger.getInstance(Output.console);
+		
+		// Initialise thread pool
+		exec = new ThreadPoolExecutor(THREAD_COUNT);
+		
+		// Create task and let it be executed by worker threads
+		try {
+			serverSocket = new ServerSocket(SERVER_PORT);
+			while(true) {
+				final Socket s = serverSocket.accept();
+				Runnable task = () -> {
+					RequestHandler.use(handlerType, s);
+				};
+				exec.execute(task);
+			}
+		} catch (IOException e) {
+			logger.fatal("Server Socket failure.", e);
+			shutdown();
+		}
+	}
+
+
+	
+	/**
+	 * Properly shuts down the webs server service and terminates the program.
+	 */
+	public void shutdown() {
+		logger.info(1, "Service shuting down ...");
+		System.exit(0);
+	}
+
+	
+}

@@ -1,0 +1,8 @@
+package modules;
+
+import java.net.Socket;
+
+public interface Handler {
+
+	public void request(Socket s) throws IOException;
+}

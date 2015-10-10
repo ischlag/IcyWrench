@@ -1,0 +1,10 @@
+package modules;
+
+public class Handler {
+
+	public static enum HandlerType { HTTP };
+	
+	public Handler(HandlerType type, Socket s){
+		
+	}
+}

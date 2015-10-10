@@ -1,0 +1,30 @@
+1444465374474	Rename package 'icyWrench'
+1444465396101	Copy compilation unit
+1444465404874	Delete element
+1444465447610	Rename type 'icywrench'
+1444468103574	Rename type 'logger'
+1444468660054	Rename field 'outState'
+1444470089589	Rename local variable 'worker'
+1444470111020	Rename method 'activate'
+1444470208991	Rename method 'activateWorker'
+1444472068192	Rename type 'Handler'
+1444472194045	Rename package 'handler'
+1444473215864	Move compilation unit
+1444476707752	Rename type 'Type'
+1444477300748	Rename type 'Handler'
+1444477384105	Rename type 'HandlerRequest'
+1444477565346	Rename field 'SERVER_TIMEOUT'
+1444477581569	Rename field 'SERVER_TIMEOUT_MS'
+1444483461071	Rename type 'HttpConstants'
+1444483607205	Rename type 'HttpConstant'
+1444485231809	Rename local variable 'client'
+1444485236300	Rename local variable 'client'
+1444485238803	Rename local variable 'client'
+1444485242838	Rename local variable 'client'
+1444485246321	Rename local variable 'client'
+1444485250330	Rename local variable 'client'
+1444487468684	Move compilation unit
+1444487924801	Delete element
+1444487949943	Rename type 'URI'
+1444489557792	Rename local variable 'file'
+1444490479372	Delete element

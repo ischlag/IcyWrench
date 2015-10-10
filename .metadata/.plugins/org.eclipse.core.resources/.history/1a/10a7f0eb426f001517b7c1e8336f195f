@@ -1,0 +1,12 @@
+package modules;
+
+import java.net.Socket;
+
+public class Handler {
+
+	public static enum HandlerType { HTTP };
+	
+	public Handler(HandlerType type, Socket s){
+				
+	}
+}

@@ -1,0 +1,10 @@
+package Parser;
+
+public class UriParser {
+
+	private URI innerURI;
+	
+	public UriParser(String str) {
+		
+	}
+}

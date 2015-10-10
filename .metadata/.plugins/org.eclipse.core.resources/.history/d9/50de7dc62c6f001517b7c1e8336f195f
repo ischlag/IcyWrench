@@ -1,0 +1,15 @@
+package core;
+
+import java.util.concurrent.Executor;
+
+public class ThreadPoolExecutor implements Executor {
+
+	private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
+	
+	@Override
+	public void execute(Runnable command) {
+		
+	}
+
+	
+}

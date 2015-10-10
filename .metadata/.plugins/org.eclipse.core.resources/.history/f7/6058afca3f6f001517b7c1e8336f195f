@@ -1,0 +1,9 @@
+package modules;
+
+import java.io.IOException;
+import java.net.Socket;
+
+public interface Handler {
+
+	public void static request(Socket s);
+}

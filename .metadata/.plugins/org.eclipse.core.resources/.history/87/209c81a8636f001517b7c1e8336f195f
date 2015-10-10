@@ -1,0 +1,14 @@
+package Parser;
+
+public class UriParser {
+
+	private URI innerURI;
+	
+	public UriParser(String str) {
+		
+	}
+	
+	private void removeHttpVersion(String str) {
+		
+	}
+}

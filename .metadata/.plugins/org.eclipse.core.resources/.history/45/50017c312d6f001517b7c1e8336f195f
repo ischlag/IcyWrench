@@ -1,0 +1,39 @@
+package core;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class ThreadPoolExecutor implements Executor {
+
+	private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
+
+	public ThreadPoolExecutor(int nrThreads) {
+
+	}
+
+	private void activate() {
+		Runnable worker = new Runnable() {
+
+			@Override
+			public void run() {
+
+				try {
+					while (true) {
+						queue.take().run();
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		};
+
+	}
+
+	@Override
+	public void execute(Runnable command) {
+
+	}
+}

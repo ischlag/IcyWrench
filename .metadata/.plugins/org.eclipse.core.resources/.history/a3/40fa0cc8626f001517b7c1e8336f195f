@@ -1,0 +1,25 @@
+import java.net.URI;
+import java.net.URISyntaxException;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+//		IcyWrench iw = new IcyWrench();
+	
+		URI uri;
+		try {
+			
+			
+			uri = new URI("/aaa/bbb/index.html?eee=444&ttt=iii HTTP/1.1");
+			System.out.println(uri.getRawQuery());
+			
+			
+			
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

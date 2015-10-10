@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.ConcurrentModificationException"/>
+<fullyQualifiedTypeName name="java.util.concurrent.ArrayBlockingQueue"/>
+<fullyQualifiedTypeName name="core.ThreadPoolExecutor"/>
+<fullyQualifiedTypeName name="logmanager.Logger.Output"/>
+<fullyQualifiedTypeName name="core.HttpRequestHandler"/>
+<fullyQualifiedTypeName name="handler.Handler"/>
+<fullyQualifiedTypeName name="modules.Handler"/>
+<fullyQualifiedTypeName name="modules.Handler.Type"/>
+<fullyQualifiedTypeName name="modules.HttpRequestHandler"/>
+<fullyQualifiedTypeName name="logmanager.Logger"/>
+<fullyQualifiedTypeName name="exceptions.IllegalConfigurationException"/>
+<fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+<fullyQualifiedTypeName name="java.io.DataInputStream"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="modules.HttpParser"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.net.URLDecoder"/>
+<fullyQualifiedTypeName name="java.net.URI"/>
+<fullyQualifiedTypeName name="Parser.UriParser"/>
+</qualifiedTypeNameHistroy>

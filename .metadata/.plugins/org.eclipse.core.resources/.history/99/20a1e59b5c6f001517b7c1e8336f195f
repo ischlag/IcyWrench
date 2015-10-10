@@ -1,0 +1,25 @@
+package Parser;
+
+import java.util.Map;
+
+import logmanager.Logger;
+
+public class URIParser {
+
+	static class URI {
+		public final String path;
+		public final String filename;
+		public final String filetype;
+		public final Map<String, String> args;
+		
+		
+	}
+	
+	
+	private static Logger logger = Logger.getInstance();
+
+	
+	
+	
+	
+}

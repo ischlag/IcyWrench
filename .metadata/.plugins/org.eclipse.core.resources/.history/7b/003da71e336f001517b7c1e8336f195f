@@ -1,0 +1,42 @@
+package core;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import logmanager.Logger;
+
+public class ThreadPoolExecutor implements Executor {
+
+	private final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
+
+	public ThreadPoolExecutor(int nrThreads) {
+		Logger.info(1, "ThreadPool with " + nrThreads + " Thread initiated.");
+	}
+
+	private void activate() {
+		Runnable workerJob = new Runnable() {
+
+			@Override
+			public void run() {
+
+				try {
+					while (true) {
+						queue.take().run();
+					}
+				} catch (InterruptedException e) {
+					Logger.error("Worker Thread died", e);
+				}
+
+			}
+		};
+		new Thread(workerJob).start();
+		
+
+	}
+
+	@Override
+	public void execute(Runnable command) {
+
+	}
+}

@@ -1,0 +1,141 @@
+package logmanager;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Simple logger class to facilitate a structured way to handle logging in the IcyWrench WebServer.
+ * @author is59
+ *
+ */
+public class Logger {
+
+	public static final String PATH = "./";
+	public static final String LOG_FILE = "logfile.txt";
+
+	private static final String TRACE_TAG = "[TRACE]";
+	private static final String DEBUG_TAG = "[DEBUG]";
+	private static final String INFO_TAG = "[INFO]";
+	private static final String WARNING_TAG = "[WARNING]";
+	private static final String ERROR_TAG = "[ERROR]";
+	private static final String FATAL_TAG = "[FATAL]";
+	
+	private static Logger instance = null;
+
+	public static enum Output {
+		file, console, both
+	};
+
+	private static Output output_type = Output.console;
+	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private Date date = new Date();
+	
+	private Logger() {}
+	
+	/**
+	 * Default log output is the console.
+	 */
+	public static Logger getInstance() {
+		return getInstance(Output.console);
+	}
+
+	/**
+	 * Define log output.
+	 * @param outState
+	 */
+	public static Logger getInstance(Output outState) {
+		Logger.output_type = outState;
+		if(instance == null) {
+			instance = new Logger();
+		}
+		return instance;
+	}
+	
+	/**
+	 * Write debug message to log output.
+	 * @param importance level of debug depth 1 (shallow) to 10 (deep).
+	 * @param message
+	 */
+	public void trace(String ip, String message) {
+		write((ip != null?ip:"") + TRACE_TAG + '\t' + message);
+	}
+	
+
+	/**
+	 * Write debug message to log output.
+	 * @param importance level of debug depth 1 (shallow) to 10 (deep).
+	 * @param message
+	 */
+	public void debug(String ip, int importance, String message) {
+		write((ip != null?ip:"") + DEBUG_TAG + '\t' + "(" + importance + ") " + message);
+	}
+	
+	/**
+	 * Write info message to log output.
+	 * @param importance level of seriousness from 1 (weak) to 10 (severe).
+	 * @param message
+	 * @param e
+	 */
+	public void info(String ip, int importance, String message) {
+		write((ip != null?ip:"") + INFO_TAG + '\t' + "(" + importance + ") " + message);
+	}
+
+	/**
+	 * Write warning level message to log output.
+	 * @param message
+	 * @param e
+	 */
+	public void warning(String ip, String message, Exception e) {
+		write((ip != null?ip:"") + WARNING_TAG + '\t' + message);
+	}
+
+	/**
+	 * Write error level message to log output.
+	 * @param message
+	 * @param e
+	 */
+	public void error(String ip, String message, Exception e) {
+		write((ip != null?ip:"") + ERROR_TAG + '\t' + message);
+	}
+
+	/**
+	 * Write fatal error level message to log output. Program must crash.
+	 * @param message
+	 * @param e
+	 */
+	public void fatal(String ip, String message, Exception e) {
+		write((ip != null?"["+ip+"]":"") + FATAL_TAG + '\t' +  message);
+		write(e.getMessage());
+	}
+	
+	private void write(String newLine) {
+		
+		String prefix = "[" + dateFormat.format(date) + "] ";
+		
+		newLine = prefix.concat(newLine);
+		
+		switch (output_type) {
+		case console:
+			appendToConsole(newLine);
+			break;
+		case file:
+			appendToFile(newLine);
+			break;
+		case both:
+			appendToConsole(newLine);
+			appendToFile(newLine);
+			break;
+		default:
+			appendToConsole(newLine);
+		}
+	}
+	
+	private void appendToFile(String newLine) {
+		//TODO
+	}
+
+	private void appendToConsole(String newLine) {
+		System.out.println(newLine);
+	}
+}

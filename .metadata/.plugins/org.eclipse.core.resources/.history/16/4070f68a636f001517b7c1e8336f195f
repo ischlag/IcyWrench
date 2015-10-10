@@ -1,0 +1,10 @@
+package Parser;
+
+public class UriParser {
+
+	
+	
+	public UriParser(String str) {
+		
+	}
+}

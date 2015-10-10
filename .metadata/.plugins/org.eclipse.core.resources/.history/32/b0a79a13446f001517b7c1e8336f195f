@@ -1,0 +1,28 @@
+package modules;
+
+import java.net.Socket;
+
+import exceptions.IllegalConfigurationException;
+import logmanager.Logger;
+
+public class RequestHandler {
+
+	public static enum HandlerType {
+		HTTP
+	};
+
+	private static Logger logger = Logger.getInstance();
+
+	private RequestHandler() {
+	}
+
+	private static void requestHandler(HandlerType type, Socket s) {
+		switch (type) {
+		case HTTP:
+			HttpRequestHandler.request(s);
+			break;
+		default:
+			logger.fatal("No valid handler specified", new IllegalConfigurationException());
+		}
+	}
+}

@@ -1,0 +1,22 @@
+package modules;
+
+import java.net.Socket;
+
+public class Handler {
+
+	public static enum HandlerType { HTTP };
+	private 
+	
+	private Handler(){
+	}
+
+	private void chooseHandler(HandlerType type, Socket s) {
+		switch(type) {
+		case HTTP:
+			HttpRequestHandler.request(s);
+			break;
+			default:
+				
+		}
+	}
+}

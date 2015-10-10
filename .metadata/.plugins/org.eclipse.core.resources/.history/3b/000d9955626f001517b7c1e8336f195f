@@ -1,0 +1,20 @@
+import java.net.URLDecoder;
+
+import Parser.Uri;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+//		IcyWrench iw = new IcyWrench();
+	
+		Uri u = new Uri("/aaa/bbb/index.html?eee=444&ttt=iii HTTP/1.1");
+	
+		URLDecoder urld = new URLDecoder();
+		
+		urld.decode("/aaa/bbb/index.html?eee=444&ttt=iii HTTP/1.1");
+	
+	
+	}
+
+}

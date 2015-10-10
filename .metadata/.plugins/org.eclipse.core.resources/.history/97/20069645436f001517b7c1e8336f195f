@@ -1,0 +1,23 @@
+package modules;
+
+import java.net.Socket;
+
+import logmanager.Logger;
+
+public class Handler {
+
+	public static enum HandlerType { HTTP };
+	private Logger logger = Logger.getInstance();
+	
+	private Handler(){}
+
+	private void chooseHandler(HandlerType type, Socket s) {
+		switch(type) {
+		case HTTP:
+			HttpRequestHandler.request(s);
+			break;
+			default:
+				
+		}
+	}
+}

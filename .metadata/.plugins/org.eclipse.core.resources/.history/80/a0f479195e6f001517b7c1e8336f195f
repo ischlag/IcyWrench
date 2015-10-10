@@ -1,0 +1,29 @@
+package Parser;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Immutable class which parses URI into its parts
+ * @author is59
+ *
+ */
+public class Uri {
+	private final String path;
+	private final String filename;
+	private final String filetype;
+	private final Map<String, String> args;
+
+	public Uri(String rawUri) {
+		
+		
+		
+	}
+	
+	public Uri(String path, String filename, String filetype, Map<String, String> args) {
+		this.path = path;
+		this.filename = filename;
+		this.filetype = filetype;
+		this.args = new HashMap<String, String>(args);
+	}
+}

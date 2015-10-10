@@ -1,0 +1,8 @@
+package modules;
+
+public class Handler {
+
+	public static enum Type { HTTP };
+	
+	publci Handler()
+}

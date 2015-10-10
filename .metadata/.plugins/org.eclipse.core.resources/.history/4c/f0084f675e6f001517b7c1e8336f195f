@@ -1,0 +1,34 @@
+package Parser;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Immutable class which parses URI into its parts
+ * @author is59
+ *
+ */
+public class Uri {
+	private final String path;
+	private final String filename;
+	private final String filetype;
+	private final Map<String, String> args;
+	private final boolean version10;
+
+	public Uri(String rawUri) {
+		
+		//http version
+		version10 = false;
+		String last = rawUri.substring(rawUri.lastIndexOf(' ')+1);
+		
+		
+	}
+	
+	public Uri(String path, String filename, String filetype, Map<String, String> args, boolean version10) {
+		this.path = path;
+		this.filename = filename;
+		this.filetype = filetype;
+		this.args = new HashMap<String, String>(args);
+		this.version10 = version10;
+	}
+}

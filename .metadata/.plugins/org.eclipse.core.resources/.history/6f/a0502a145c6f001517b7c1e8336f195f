@@ -1,0 +1,10 @@
+package Parser;
+
+import logmanager.Logger;
+
+public class URIParser {
+
+	private static Logger logger = Logger.getInstance();
+
+	
+}

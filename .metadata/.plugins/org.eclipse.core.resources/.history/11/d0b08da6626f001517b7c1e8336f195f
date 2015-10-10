@@ -1,0 +1,12 @@
+import core.IcyWrench;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+//		IcyWrench iw = new IcyWrench();
+	
+		URI uri = new URI("/aaa/bbb/index.html?eee=444&ttt=iii HTTP/1.1");
+	}
+
+}

@@ -1,0 +1,21 @@
+package Parser;
+
+import java.net.URI;
+
+public class UriParser {
+
+	private URI innerURI;
+	
+	public UriParser(String str) {
+		System.out.println(str);
+		removeHttpVersion(str);
+		System.out.println(str);
+	}
+	
+	private void removeHttpVersion(String str) {
+		int last = str.lastIndexOf(' ');
+		if(last > 0 && last < str.length()) {
+			str = str.substring(0,last);
+		}
+	}
+}

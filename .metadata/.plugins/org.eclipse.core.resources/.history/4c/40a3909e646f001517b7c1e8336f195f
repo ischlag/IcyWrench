@@ -1,0 +1,15 @@
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import Parser.UriParser;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+//		IcyWrench iw = new IcyWrench();
+	
+		UriParser uip = new UriParser("/aaa/bbb/ccc?dd=ee&ff=gg asdf);
+	}
+
+}

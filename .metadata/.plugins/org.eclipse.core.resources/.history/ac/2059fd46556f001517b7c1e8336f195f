@@ -1,0 +1,34 @@
+package modules;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.util.Map;
+
+import logmanager.Logger;
+
+class HttpRequestHandler {
+	
+	private static Logger logger = Logger.getInstance();
+
+	private HttpRequestHandler() {
+	}
+
+	public static void request(Socket s) {
+		logger.trace("enter HttpRequestHandler.request()");
+
+		try {
+			Map<String, String> header = HttpParser.getHttpHeader(s.getInputStream());
+			
+			header.entrySet().forEach((x) -> System.out.println(x.getKey() + " " + x.getValue()));
+
+			
+			s.close();
+		} catch (IOException e) {
+			logger.error("Input/Output Stream error", e);
+		} catch (Exception e) {
+			logger.error("Illegal Header Format", e);
+		}
+
+	}
+
+}
