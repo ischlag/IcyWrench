@@ -1,0 +1,10 @@
+package exceptions;
+
+/**
+ * For invalid and fatal web server configuration.
+ * @author 150021237
+ *
+ */
+public class IllegalConfigurationException extends Exception {
+
+}

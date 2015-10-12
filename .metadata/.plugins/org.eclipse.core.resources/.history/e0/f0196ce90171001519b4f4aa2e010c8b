@@ -1,0 +1,14 @@
+package modules.http.errors;
+
+public class ErrorLoader {
+
+	private ErrorLoader(){}
+	
+	public static String getErrorMessage(int errorCode) {
+		String message = "";
+		
+		
+		
+		
+	}
+}

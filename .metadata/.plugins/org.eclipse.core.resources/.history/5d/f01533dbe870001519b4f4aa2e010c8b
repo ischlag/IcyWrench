@@ -1,0 +1,18 @@
+package Parser.Http;
+
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+
+import modules.HttpRequestHandler.HttpRequest;
+
+public abstract class Page {
+
+	abstract public void load(HttpRequest httpRequest);
+	
+	public void respond(HttpRequest httpRequest, String output) throws IOException {
+		BufferedOutputStream bos = new BufferedOutputStream(httpRequest.socket.getOutputStream());
+		bos.write(output.getBytes());
+		bos.flush();
+		bos.close();
+	}
+}

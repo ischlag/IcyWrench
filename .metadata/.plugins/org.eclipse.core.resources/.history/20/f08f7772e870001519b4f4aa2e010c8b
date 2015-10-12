@@ -1,0 +1,15 @@
+package Parser.Http;
+
+import java.io.OutputStream;
+
+import modules.HttpRequestHandler.HttpRequest;
+
+public abstract class Page {
+
+	abstract public void load(HttpRequest httpRequest);
+	
+	private void respond(HttpRequest httpRequest, String output) {
+		OutputStream os = httpRequest.socket.getOutputStream();
+		
+	}
+}

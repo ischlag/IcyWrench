@@ -1,0 +1,12 @@
+package Parser.Http;
+
+import modules.HttpRequestHandler.HttpRequest;
+
+public abstract class Page {
+
+	abstract public void load(HttpRequest httpRequest);
+	
+	private void respond(HttpRequest httpRequest, String output) {
+		
+	}
+}

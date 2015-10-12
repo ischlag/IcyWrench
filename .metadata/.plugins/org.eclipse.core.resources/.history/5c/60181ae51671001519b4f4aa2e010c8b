@@ -1,0 +1,25 @@
+package modules.http.errors;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+/**
+ * Simple class to create and load error messages based on error codes.
+ * @author 150021237
+ *
+ */
+public class ErrorLoader {
+
+	private static final String PATH = "modules/http/errors/";
+	
+	private ErrorLoader(){}
+	
+	public static String getErrorMessage(int errorCode) throws IOException {
+		
+		
+		String str = new String(Files.readAllBytes(ClassLoader.getSystemClassLoader().getResourceAsStream(PATH + errorCode + ".html")));
+		System.out.println("errorMsgSize: " + str.length());
+		return str;
+	}
+}

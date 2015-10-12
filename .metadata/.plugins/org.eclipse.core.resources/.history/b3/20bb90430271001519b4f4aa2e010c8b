@@ -1,0 +1,17 @@
+package modules.http.errors;
+
+public class ErrorLoader {
+
+	private static final String PATH = "src/modules/http/errors/";
+	
+	private ErrorLoader(){}
+	
+	public static String getErrorMessage(int errorCode) {
+		String message = "";
+		
+		switch(errorCode) {
+		case 404:
+			File f = new File("src/")
+		}
+	}
+}

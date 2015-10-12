@@ -1,0 +1,8 @@
+package wwwroot.test;
+
+public class Echo {
+
+	public void request() {
+		System.out.println("hello world");
+	}
+}

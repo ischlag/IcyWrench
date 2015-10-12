@@ -1,0 +1,18 @@
+package wwwroot;
+
+import java.io.IOException;
+
+import Parser.Http.Page;
+import logmanager.Logger;
+import modules.HttpRequestHandler.HttpRequest;
+
+public class Index extends Page {
+
+	@Override
+	public void load(HttpRequest httpRequest) throws IOException {
+		Logger.getInstance().info(httpRequest.socket.getInetAddress().toString(), 1, "Executing Index");
+		respond(httpRequest, "This is Index");
+	}
+
+
+}

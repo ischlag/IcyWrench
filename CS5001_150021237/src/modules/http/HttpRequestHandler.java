@@ -1,0 +1,172 @@
+package modules.http;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.URISyntaxException;
+import java.util.Map;
+
+import Parser.Http.HttpParser;
+import Parser.Http.Page;
+import Parser.Http.UriParser;
+import exceptions.ServiceException;
+import logmanager.Logger;
+import modules.http.HttpResponseHandler.HttpStatus;
+
+/**
+ * Simple http handler. Executes the requested script.
+ * 
+ * @author 150021237
+ *
+ */
+public class HttpRequestHandler {
+
+	public static final String DEFAULT_PAGE = "Index";
+
+	private static final String PACKAGE_PATH = "src/";
+	private static final String WWW_ROOT = "wwwroot";
+
+	private static Logger logger = Logger.getInstance();
+
+	private HttpRequestHandler() {
+	}
+
+	/**
+	 * Creates an HttpRequest Object and processes it.
+	 * 
+	 * @param s
+	 */
+	public static void request(Socket s) {
+		logger.trace("enter HttpRequestHandler.request()");
+
+		try {
+			HttpRequest httpRequest;
+			try {
+				Map<String, String> header = HttpParser.getHttpHeader(s.getInputStream());
+
+				String content = "";
+				if (header.containsKey(HttpParser.HTTP_CONTENT_LENGTH_KEY)) {
+					String value = header.get(HttpParser.HTTP_CONTENT_LENGTH_KEY);
+					int length = Integer.parseInt(value.trim());
+					content = HttpParser.getContent(s.getInputStream(), length);
+				}
+
+				httpRequest = new HttpRequest(header, content, new UriParser(header.get(HttpParser.HTTP_URI_KEY)), s);
+
+				logger.info(s.getInetAddress().toString(), 1, header.get(HttpParser.HTTP_METHOD_KEY) + " "
+						+ WWW_ROOT.concat(httpRequest.uriParser.getFilePath()));
+
+				processRequest(httpRequest);
+
+			} catch (ServiceException e) {
+				logger.error(s.getInetAddress().getHostAddress(), "Website had an error", e);
+
+				// Server Site threw an Error, could be users fault.
+				// For now Everything is an Internal Error...
+				HttpRequest dummy = new HttpRequest(null, null, null, s);
+				HttpResponseHandler.sendError(dummy, HttpStatus.INTERNAL_ERROR);
+
+			} catch (Exception e) {
+				logger.error(s.getInetAddress().getHostAddress(), "General Exception", e);
+
+				// Client input was illegal
+				HttpRequest dummy = new HttpRequest(null, null, null, s);
+				HttpResponseHandler.sendError(dummy, HttpStatus.BAD_REQUEST);
+			}
+
+			s.close();
+
+		} catch (IOException e) {
+			logger.error("Socket close exception", e);
+		}
+	}
+
+	/**
+	 * Evaluates if the request is handled by the webserver (file browsing e.g.)
+	 * or if it actually is trying to call a class.
+	 * 
+	 * @param httpRequest
+	 * @throws URISyntaxException
+	 * @throws ServiceException
+	 */
+	private static void processRequest(HttpRequest httpRequest) throws URISyntaxException, ServiceException {
+		logger.trace("enter HttpRequestHandler.processRequest");
+		String path = WWW_ROOT.concat(httpRequest.uriParser.getFilePath());
+		path = path.replace('/', '.');
+
+		//check if class exists.
+		try {
+			Class.forName(path);
+			processServiceRequest(httpRequest);
+		} catch (ClassNotFoundException e) {
+			processFileRequest(httpRequest);
+		}
+
+	}
+
+	/**
+	 * Loads class dynamically and executes it.
+	 * @param httpRequest 
+	 * @throws ServiceException Loaded class threw some kind of error.
+	 */
+	private static void processServiceRequest(HttpRequest httpRequest) throws ServiceException {
+		logger.trace("enter HttpRequestHandler.processServiceRequest");
+		String path = WWW_ROOT.concat(httpRequest.uriParser.getFilePath());
+		path = path.replace('/', '.');
+		try {
+			Object o = Class.forName(path).newInstance();
+			if (o instanceof Page) {
+				Page p = (Page) o;
+				logger.info(httpRequest.socket.getInetAddress().toString(), 1,
+						"Executing class " + p.getClass().getSimpleName());
+				p.load(httpRequest);
+			}
+
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage());
+		}
+
+	}
+
+	/**
+	 * Retrieve Files from the webserver.
+	 * @param httpRequest
+	 * @throws ServiceException
+	 */
+	private static void processFileRequest(HttpRequest httpRequest) throws ServiceException {
+		logger.trace("enter HttpRequestHandler.processFileRequest");
+		String filePath = WWW_ROOT.concat(httpRequest.uriParser.getFilePath());
+		logger.info(httpRequest.socket.getInetAddress().toString(), 1, "requested file: " + filePath);
+		File f = new File(PACKAGE_PATH.concat(filePath));
+		try {
+			if (f.exists()) {
+				HttpResponseHandler.sendOk(httpRequest, f);
+			} else {
+				HttpResponseHandler.sendError(httpRequest, HttpStatus.FILE_NOT_FOUND);
+			}
+		} catch (IOException e) {
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
+	/**
+	 * Immutable (reference) container class to easier manage HttpRequest
+	 * information.
+	 * 
+	 * @author 150021237
+	 *
+	 */
+	public static class HttpRequest {
+		public final Map<String, String> headers;
+		public final String content;
+		public final UriParser uriParser;
+		public final Socket socket;
+
+		public HttpRequest(Map<String, String> headers, String content, UriParser uriParser, Socket socket) {
+			this.headers = headers;
+			this.content = content;
+			this.uriParser = uriParser;
+			this.socket = socket;
+		}
+	}
+}

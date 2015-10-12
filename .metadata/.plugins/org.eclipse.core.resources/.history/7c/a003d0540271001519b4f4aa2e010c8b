@@ -1,0 +1,18 @@
+package modules.http.errors;
+
+import java.io.File;
+
+public class ErrorLoader {
+
+	private static final String PATH = "src/modules/http/errors/";
+	
+	private ErrorLoader(){}
+	
+	public static String getErrorMessage(int errorCode) {
+		String message = "";
+		
+		File f = new File(PATH + errorCode + ".html");
+		
+		
+	}
+}

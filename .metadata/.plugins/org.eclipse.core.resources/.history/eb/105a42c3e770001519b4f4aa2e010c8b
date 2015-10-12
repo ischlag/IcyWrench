@@ -1,0 +1,7 @@
+package wwwroot.test;
+
+import Parser.Http.Page;
+
+public class Echo implements Page {
+
+}

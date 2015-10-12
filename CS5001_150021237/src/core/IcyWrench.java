@@ -5,14 +5,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.Executor;
 
-import exceptions.IllegalConfigurationException;
 import logmanager.Logger;
 import logmanager.Logger.Output;
 import modules.RequestHandler;
 import modules.RequestHandler.HandlerType;
 
 /**
- * Threaded WebServer which can run different modules for request handling. 
+ * Threaded WebServer which can run different modules for request handling. Http Module is provided.
  * @author 150021237
  *
  */
@@ -26,6 +25,9 @@ public class IcyWrench {
 	private Executor exec;
 	private HandlerType handlerType;
 	
+	/**
+	 * Initializes IcyWrench with the http module.
+	 */
 	public IcyWrench() {
 		
 		handlerType = RequestHandler.HandlerType.HTTP;
@@ -38,11 +40,13 @@ public class IcyWrench {
 		// Create task and let it be executed by worker threads
 		try {
 			serverSocket = new ServerSocket(SERVER_PORT);
+			logger.info(1, "Server running on port " + SERVER_PORT);
 			while(true) {
 				final Socket s = serverSocket.accept();
 				Runnable task = () -> {
 					RequestHandler.use(handlerType, s);
 				};
+				logger.info(s.getInetAddress().toString(), 1, "New Socket Connection.");
 				exec.execute(task);
 			}
 		} catch (IOException e) {
@@ -50,8 +54,6 @@ public class IcyWrench {
 			
 		}
 	}
-
-
 	
 	/**
 	 * Properly shuts down the webs server service and terminates the program.

@@ -1,0 +1,77 @@
+package Parser;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+
+/**
+ * class to parse uri request with an HTTP version info a the end.
+ * 
+ * @author 150021237
+ *
+ */
+public class UriParser {
+
+	private URI innerUri;
+
+	public UriParser(String str) throws URISyntaxException {
+		innerUri = new URI(removeHttpVersion(str));
+	}
+
+	/**
+	 * Return innerUri element.
+	 * 
+	 * @return
+	 */
+	public URI getURI() {
+		return innerUri;
+	}
+
+	private String removeHttpVersion(String str) {
+		int last = str.lastIndexOf(' ');
+		if (last > 0 && last < str.length()) {
+			if (str.substring(last).trim().toUpperCase().equals("HTTP/1.1")
+					|| str.substring(last).trim().toUpperCase().equals("HTTP/1.0"))
+				return str.substring(0, last);
+		}
+		return str;
+	}
+	
+	public String getFolderPath() {
+		String path = innerUri.getPath();
+		int last = path.lastIndexOf('/')+1;
+		if(0 < last && last < path.length()) {
+			return path.substring(0,last);
+		} else {
+			return "/";
+		}
+	}
+	
+	public String getFileName() {
+		String str = getFile();
+		String[] file = str.split(\\.");
+		System.out.println(file.length);
+		if(file.length > 0)
+			return file[1];
+		else 
+			return str;
+	}
+	
+	public String getFileType() {
+		String[] file = "ccc.kk".split("\\.");
+			return file[1];
+	}
+	
+	private String getFile() {
+		String path = innerUri.getPath();
+		int last = path.lastIndexOf('/')+1;
+		if(0 < last && last < path.length()) {
+			String rest = path.substring(last);
+			int firstSpace = rest.indexOf('?') + 1;
+			if(0 < firstSpace && firstSpace < rest.length())
+				return rest.substring(0, firstSpace);
+			else 
+				return rest;
+		}
+		return "index";
+	}
+}

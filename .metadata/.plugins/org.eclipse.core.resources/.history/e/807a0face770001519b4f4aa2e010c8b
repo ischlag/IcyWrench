@@ -1,0 +1,6 @@
+package Parser.Http;
+
+public interface Page {
+
+	public void load(HttpRequest httpRequest);
+}

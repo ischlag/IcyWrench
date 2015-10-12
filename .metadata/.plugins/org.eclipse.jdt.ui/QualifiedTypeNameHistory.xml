@@ -8,12 +8,9 @@
 <fullyQualifiedTypeName name="handler.Handler"/>
 <fullyQualifiedTypeName name="modules.Handler"/>
 <fullyQualifiedTypeName name="modules.Handler.Type"/>
-<fullyQualifiedTypeName name="logmanager.Logger"/>
 <fullyQualifiedTypeName name="exceptions.IllegalConfigurationException"/>
 <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
 <fullyQualifiedTypeName name="java.io.DataInputStream"/>
-<fullyQualifiedTypeName name="java.io.OutputStream"/>
-<fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
@@ -27,5 +24,24 @@
 <fullyQualifiedTypeName name="java.net.URLDecoder"/>
 <fullyQualifiedTypeName name="java.net.URI"/>
 <fullyQualifiedTypeName name="Parser.UriParser"/>
+<fullyQualifiedTypeName name="java.net.URISyntaxException"/>
+<fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
+<fullyQualifiedTypeName name="modules.HttpRequestHandler.HttpRequest"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
+<fullyQualifiedTypeName name="Parser.Http.Page"/>
+<fullyQualifiedTypeName name="modules.HttpResponseHandler.HttpStatus"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="java.io.BufferedOutputStream"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="core.IcyWrench"/>
 <fullyQualifiedTypeName name="modules.HttpRequestHandler"/>
+<fullyQualifiedTypeName name="modules.HttpResponseHandler"/>
+<fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="java.nio.file.Paths"/>
+<fullyQualifiedTypeName name="modules.http.errors.ErrorLoader"/>
+<fullyQualifiedTypeName name="modules.http.HttpResponseHandler"/>
+<fullyQualifiedTypeName name="logmanager.Logger"/>
+<fullyQualifiedTypeName name="exceptions.ServiceException"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
 </qualifiedTypeNameHistroy>

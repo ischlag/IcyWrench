@@ -1,0 +1,33 @@
+import java.net.URISyntaxException;
+
+import Parser.UriParser;
+import core.IcyWrench;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+//		new IcyWrench();
+		
+//		try {
+//			String p = "/aaa/bbb/ccc?ddd=111&ee=fff HTTP/1.1";
+//			p = "/ccc.kk?ddd=111&ee=fff HTTP/1.1";
+//			UriParser uri = new UriParser(p);
+//			System.out.println(p);
+//			System.out.println("path: " + uri.getFolderPath());
+//			System.out.println("name: " + uri.getFileName());
+//			System.out.println("type: " + uri.getFileType());
+//			System.out.println("fin");
+//			
+			String str = "boo:and:foo";
+			String[] strArr = str.split("\\.");
+			System.out.println("size: " + strArr.length);
+			
+//		} catch (URISyntaxException e) {
+//			e.printStackTrace();
+//		}
+//		
+		
+	}
+
+}

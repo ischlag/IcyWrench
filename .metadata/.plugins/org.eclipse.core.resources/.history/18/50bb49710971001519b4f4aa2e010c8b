@@ -1,0 +1,129 @@
+package modules.http;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
+import logmanager.Logger;
+import modules.http.HttpRequestHandler.HttpRequest;
+import modules.http.errors.ErrorLoader;
+
+/**
+ * Builds response packages and sends them to the client.
+ * @author 150021237
+ *
+ */
+public class HttpResponseHandler {
+	
+	private static Logger logger = Logger.getInstance();
+
+	public static enum HttpStatus {
+		OK(200), FILE_NOT_FOUND(404), INTERNAL_ERROR(500), BAD_REQUEST(400);
+		private HttpStatus(int code) {
+			this.code = code;
+		}
+
+		public int toInt() {
+			return code;
+		}
+
+		private final int code;
+	}
+
+	private HttpResponseHandler() {}
+
+	/**
+	 * Sends http 200 package to the client with string content.
+	 * @param httpRequest
+	 * @param content
+	 * @throws IOException
+	 */
+	public static void sendOk(HttpRequest httpRequest, String content) throws IOException {
+		logger.trace("enter HttpResponseHandler.sendOk()");
+		String out = "HTTP/1.1 " + HttpStatus.OK.toInt() + " OK\r\n" 
+				+ "Content-Type: text/html\r\n"
+				+ "Content-Length: " + content.length() + "\r\n" 
+				+ "Connection: close\r\n"
+				+ "\r\n"
+				+ content;
+		sendText(httpRequest, out);
+	}
+	
+	/**
+	 * Sends a http 200 package to the client containing a file.
+	 * @param httpRequest
+	 * @param file
+	 * @throws IOException
+	 */
+	public static void sendOk(HttpRequest httpRequest, File file) throws IOException {
+		logger.trace("enter HttpResponseHandler.sendOk()");
+		String contentType = "text/plain";
+		
+		if(httpRequest.uriParser.getFileType().equals("html"))
+			contentType = "text/html";
+				
+		String header = "HTTP/1.1 " + HttpStatus.OK.toInt() + " OK\r\n" 
+				+ "Content-Type: "+contentType+"\r\n"
+				+ "Content-Length: " + file.length() + "\r\n" 
+				+ "Connection: close\r\n"
+				+ "\r\n";
+		sendFile(httpRequest, header, file);
+	}
+
+	public static void sendError(HttpRequest httpRequest, HttpStatus httpStatus) throws IOException {
+		logger.trace("enter HttpResponseHandler.sendError()");
+		if (httpStatus.equals(HttpStatus.OK))
+			throw new IllegalStateException();
+
+		String message = "";
+		String httpMsg = "";
+		int errorCode = 0;
+		switch (httpStatus) {
+		case FILE_NOT_FOUND:
+			httpMsg = "File not found.";
+			errorCode = HttpStatus.FILE_NOT_FOUND.toInt();
+			break;
+		case INTERNAL_ERROR:
+			httpMsg = "Internal Error";
+			errorCode = HttpStatus.INTERNAL_ERROR.toInt();
+			break;
+		case BAD_REQUEST:
+			httpMsg = "Bad Request";
+			errorCode = HttpStatus.BAD_REQUEST.toInt();
+			break;
+		default:
+			throw new IllegalStateException();
+		}
+		message = ErrorLoader.getErrorMessage(errorCode);
+
+		String out = "HTTP/1.1 " + errorCode + " " + httpMsg + "\r\n" 
+				+ "Content-Type: text/html\r\n"
+				+ "Content-Length: " + message.length() + "\r\n" 
+				+ "Connection: close\r\n"
+				+ "\r\n"
+				+ message;
+		
+		sendText(httpRequest, out);
+	}
+	
+	private static void sendText(HttpRequest httpRequest, String content) throws IOException{
+		logger.trace("enter HttpResponseHandler.sendText()");
+		BufferedOutputStream bos = new BufferedOutputStream(httpRequest.socket.getOutputStream());
+		bos.write(content.getBytes());
+		bos.flush();
+		bos.close();
+		logger.info(httpRequest.socket.getInetAddress().toString(), 1, "Response send.");
+	}
+	
+	private static void sendFile(HttpRequest httpRequest, String header, File file) throws IOException{
+		logger.trace("enter HttpResponseHandler.sendFile()");
+		BufferedOutputStream bos = new BufferedOutputStream(httpRequest.socket.getOutputStream());
+		bos.write(header.getBytes());
+		Files.copy(file.toPath(), bos);
+		bos.flush();
+		bos.close();
+		logger.info(httpRequest.socket.getInetAddress().toString(), 1, "Response send.");
+	}
+
+}

@@ -1,8 +1,0 @@
-package modules;
-
-import java.net.ServerSocket;
-
-public interface Handler {
-
-	public void request(ServerSocket s);
-}

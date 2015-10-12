@@ -1,0 +1,88 @@
+package Parser.Http;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+import logmanager.Logger;
+
+/**
+ * Simple way of parsing http requests.
+ * @author 150021237
+ *
+ */
+public class HttpParser {
+
+	public final static String HTTP_METHOD_KEY = "method";
+	public final static String HTTP_URI_KEY = "uri";
+	public final static String HTTP_CONTENT_LENGTH_KEY = "Content-Length";
+	
+
+	private static Logger logger = Logger.getInstance();
+
+	/**
+	 * Get Hashmap with the http header from the input stream.
+	 * @param is socket inputstream
+	 * @return http headers
+	 * @throws IOException 
+	 */
+	public static Map<String, String> getHttpHeader(InputStream is) throws IOException {
+		logger.trace("enter HttpRequestHandler.getHttpHeader()");
+		HashMap<String, String> headers = new HashMap<>();
+
+		String str = new String(readRawLine(is));
+		
+		// first line
+		if (str.equals("")) {
+			return null;
+		} else {
+			headers.put(HttpParser.HTTP_METHOD_KEY, str.substring(0, str.indexOf(' ')));
+			headers.put(HttpParser.HTTP_URI_KEY, str.substring(str.indexOf(' ') + 1));
+		}
+		
+		// rest of the request header
+		while (!(str = new String(readRawLine(is))).equals("\r\n")) {
+			headers.put(str.substring(0, str.indexOf(':')), str.substring(str.indexOf(':') + 2));
+		}
+		
+		return headers;
+	}
+
+	/**
+	 * After the header has been extracted you can now get the content data.
+	 * @param inputStream socket inputstream
+	 * @return http content
+	 * @throws IOException 
+	 */
+	public static String getContent(InputStream is) throws IOException {
+		logger.trace("enter HttpRequestHandler.getContent()");
+		
+		StringBuilder content = new StringBuilder();
+		String str;
+		while (!(str = new String(readRawLine(is))).equals("\r\n")) {
+			System.out.println("GOT LINE");
+			content.append(str);
+		}
+		
+		return content.toString();
+	}
+	
+	private static byte[] readRawLine(InputStream is) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		int b;
+		while ((b = is.read()) >= 0) {
+			baos.write(b);
+			if (b == '\n')
+				break;
+		}
+		return baos.toByteArray();
+	}
+
+
+
+
+}

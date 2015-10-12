@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import logmanager.Logger;
 
 /**
- * Launches a number of threads and lets them work off the work queue.
+ * Launches a number of threads and lets them grab work from the work queue.
  * 
  * @author 150021237
  *

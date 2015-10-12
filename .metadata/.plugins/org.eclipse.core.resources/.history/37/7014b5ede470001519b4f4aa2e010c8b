@@ -1,0 +1,5 @@
+package Parser.Http;
+
+public interface Page {
+
+}

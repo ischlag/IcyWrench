@@ -1,0 +1,13 @@
+package wwwroot.test;
+
+import Parser.Http.Page;
+import modules.HttpRequestHandler.HttpRequest;
+
+public class Echo implements Page {
+
+	@Override
+	public void load(HttpRequest httpRequest) {
+		
+	}
+
+}

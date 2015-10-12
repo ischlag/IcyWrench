@@ -1,0 +1,9 @@
+package wwwroot.test;
+
+import Parser.Http.Page;
+import modules.HttpRequestHandler.HttpRequest;
+
+public class Echo extends Page {
+
+
+}

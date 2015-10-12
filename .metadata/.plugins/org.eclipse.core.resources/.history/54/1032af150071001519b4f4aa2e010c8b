@@ -1,0 +1,19 @@
+package wwwroot.test;
+
+import java.io.IOException;
+
+import Parser.Http.Page;
+import modules.HttpRequestHandler.HttpRequest;
+
+public class Echo extends Page {
+
+	@Override
+	public void load(HttpRequest httpRequest) throws IOException {
+		
+		String echo = httpRequest.content;
+		
+		this.respond(httpRequest, echo);
+	}
+
+
+}

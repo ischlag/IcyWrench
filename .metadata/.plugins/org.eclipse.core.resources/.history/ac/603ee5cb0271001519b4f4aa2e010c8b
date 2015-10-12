@@ -1,0 +1,22 @@
+package modules.http.errors;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class ErrorLoader {
+
+	private static final String PATH = "src/modules/http/errors/";
+	
+	private ErrorLoader(){}
+	
+	public static String getErrorMessage(int errorCode) throws IOException {
+		String message = "";
+		
+		return new String(Files.readAllBytes(Paths.get(PATH + errorCode + ".html")));
+		
+	}
+}

@@ -1,0 +1,17 @@
+package wwwroot.test;
+
+import java.io.IOException;
+
+import Parser.Http.Page;
+import modules.HttpRequestHandler.HttpRequest;
+
+public class Index extends Page {
+
+	@Override
+	public void load(HttpRequest httpRequest) throws IOException {
+		
+		this.respond(httpRequest, "This is Test/Index");
+	}
+
+
+}

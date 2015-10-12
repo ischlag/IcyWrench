@@ -1,0 +1,15 @@
+package Parser.Http;
+
+import java.io.IOException;
+
+import modules.http.HttpRequestHandler.HttpRequest;
+import modules.http.HttpResponseHandler;
+
+public abstract class Page {
+
+	abstract public void load(HttpRequest httpRequest) throws IOException;
+	
+	protected void respond(HttpRequest httpRequest, String output) throws IOException {
+		HttpResponseHandler.sendOk(httpRequest, output);
+	}
+}
