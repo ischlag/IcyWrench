@@ -58,11 +58,9 @@ public class HttpResponseHandler {
 	 */
 	public static void sendOk(HttpRequest httpRequest, File file) throws IOException {
 		logger.trace("enter HttpResponseHandler.sendOk()");
-		String contentType = "text/plain";
+
+		String contentType = Files.probeContentType(file.toPath());
 		
-		if(httpRequest.uriParser.getFileType().equals("html"))
-			contentType = "text/html";
-				
 		String header = "HTTP/1.1 " + HttpStatus.OK.toInt() + " OK\r\n" 
 				+ "Content-Type: "+contentType+"\r\n"
 				+ "Content-Length: " + file.length() + "\r\n" 

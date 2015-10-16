@@ -16,3 +16,5 @@
 1444671499330	Copy file
 1444672510097	Rename local variable 's'
 1444672520529	Rename local variable 'type'
+1445005697451	Rename local variable 'content'
+1445006603235	Rename resource 'test.html'

@@ -17,9 +17,24 @@ public class Echo extends Page {
 	public void load(HttpRequest httpRequest) throws IOException {
 		Logger.getInstance().info(httpRequest.socket.getInetAddress().toString(), 1, "Executing Echo");
 		String echo = httpRequest.content;
-		echo = "Echo from request content is on the next line.\n<br>".concat(echo);
 		
-		respond(httpRequest, echo);
+		StringBuilder c = new StringBuilder();
+		c.append("<!DOCTYPE html>");
+		c.append("<html>");
+		c.append("<body>");
+			c.append("<h1> Echo: </h1>");
+			c.append("<p>");
+				if(echo.trim().equals("")) { 
+					c.append("No content found in request :(");
+				} else { 
+					c.append(echo);
+				}
+			c.append("</p>");
+		c.append("</body>");
+		c.append("</html>");
+		
+		
+		respond(httpRequest, c.toString());
 	}
 
 

@@ -20,7 +20,6 @@
 		<item value="org.eclipse.ui.wizards.export.ZipFile" key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID"/>
 		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
 			<item value="org.eclipse.ui.Basic"/>
-			<item value="org.eclipse.jdt.ui.Java"/>
 		</list>
 	</section>
 	<section name="ZipFileExportWizard">

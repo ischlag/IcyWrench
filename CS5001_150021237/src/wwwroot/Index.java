@@ -16,7 +16,28 @@ public class Index extends Page {
 	@Override
 	public void load(HttpRequest httpRequest) throws IOException {
 		Logger.getInstance().info(httpRequest.socket.getInetAddress().toString(), 1, "Executing Index");
-		respond(httpRequest, "This is Index");
+		
+		StringBuilder c = new StringBuilder();
+		c.append("<!DOCTYPE html>");
+		c.append("<html>");
+		c.append("<body>");
+			c.append("<h1> Welcome to IcyWrench </h1> by 150021237");
+			c.append("<p>");
+				c.append("Check this out:<br><br>");
+				c.append("Default web site is the Index class: <a href=\"test\\\">test\\</a><br>");
+				c.append("Or go direct: <a href=\"test\\Index\">test\\Index</a><br>");
+				c.append("Echo Page will print response content: <a href=\"test\\Echo\">test\\Echo</a><br>");
+				c.append("This page throws an error: <a href=\"test\\Fail\">test\\Fail</a><br>");
+				c.append("Static HTML web site: <a href=\"test\\static.html\">test\\static.html</a><br>");
+				c.append("Image file: <a href=\"test\\logo.png\">test\\logo.png</a><br>");
+				c.append("Dynamic web site: <a href=\"test\\Dynamic?asdf=1234\">test\\Dynamic</a><br>");
+				c.append("Doesn't exists: <a href=\"test\\asdfasgr\">test\\asdfasgr</a><br>");
+			c.append("</p>");
+		c.append("</body>");
+		c.append("</html>");
+		
+		
+		respond(httpRequest, c.toString());
 	}
 
 

@@ -28,7 +28,6 @@
 <fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
 <fullyQualifiedTypeName name="modules.HttpRequestHandler.HttpRequest"/>
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
-<fullyQualifiedTypeName name="Parser.Http.Page"/>
 <fullyQualifiedTypeName name="modules.HttpResponseHandler.HttpStatus"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
 <fullyQualifiedTypeName name="java.io.BufferedOutputStream"/>
@@ -37,11 +36,12 @@
 <fullyQualifiedTypeName name="modules.HttpRequestHandler"/>
 <fullyQualifiedTypeName name="modules.HttpResponseHandler"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
-<fullyQualifiedTypeName name="java.nio.file.Files"/>
 <fullyQualifiedTypeName name="java.nio.file.Paths"/>
 <fullyQualifiedTypeName name="modules.http.errors.ErrorLoader"/>
-<fullyQualifiedTypeName name="modules.http.HttpResponseHandler"/>
 <fullyQualifiedTypeName name="logmanager.Logger"/>
 <fullyQualifiedTypeName name="exceptions.ServiceException"/>
 <fullyQualifiedTypeName name="java.io.InputStream"/>
+<fullyQualifiedTypeName name="modules.http.HttpResponseHandler"/>
+<fullyQualifiedTypeName name="java.nio.file.Files"/>
+<fullyQualifiedTypeName name="Parser.Http.Page"/>
 </qualifiedTypeNameHistroy>
