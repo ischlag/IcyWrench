@@ -1,8 +1,5 @@
-CS5001 - Practical 3 - Web Server
 
-Student ID: 150021237
-
-0x00 Short Introduction
+0x00 Introduction
 
 This web server is called IcyWrench. It was completely written by myself. It is designed to support 
 modules which implement any tcp based protocol. In this case the provided module is an http server
@@ -32,58 +29,14 @@ kind of approach. The focus in this project is on data which is operated on by s
 functions. This allows a clear and flexible architecture. I have used OOP everywhere I thought 
 it would lead to a better overall programming flow.
 
-Please have a look at ThreadPoolExecutor for my threading implementation.
-
-Please have a look at HttpRequestHandler and HttpResponseHandler for my http encoding/decoding as 
-well as the Java class loading mechanism which subdivides the server code from the web site code.
-
 
 0x03 Examples
 
-The current web site is very simple and shows the basic functionality.
-The web site is located in [ProjectRoot]/wwwroot/
-The web site can be accessed through your browser and console:
-http://localhost:12345/
-
--> If a folder is called it will by default look for the Index class/page. There is currently an 
-Index page in the wwwroot folder as well as in the test folder.
-In wwwroot/test are further test files and pages located.
-
--> Have a look at http://localhost:12345/test/ or http://localhost:12345/test/Index
-
--> There is a dynamic web site: http://localhost:12345/test/Echo
-It prints out whatever the client sends as content. See the example request below:
---------
-GET /test/Echo HTTP/1.1
-Content-Length: 5
-
-asdfg
---------
-Result: 
-
-HTTP/1.1 200 OK
-Content-Type: text/html
-Content-Length: 56
-Connection: close
-
-Echo from request content is on the next line.
-<br>asdfgConnection closed by foreign host.
-
--> There is an example for a recovery from a failure on the web site itself
-   http://localhost:12345/test/Fail
-
--> Send following GET request to produce a 400 Error:
---------
-GET /test/Echo HTTP/1.1
-Content-Length: 5
-asdfg
---------
-
+See the demo page on the server. Default port is 12345. Access with your browser.
 
 0x04 Running Instructions
 
 Run the Web Server like this:
 
 java -jar IcyWrench.jar
-
 
