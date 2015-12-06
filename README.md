@@ -1,14 +1,15 @@
+# IcyWrench
 
-# Simple http sever as part of a programming assignment at the University of St Andrews
+A simple java based tcp sever groundwork with a simple http module for dynamic pages
 
-0x00 Introduction
+##0x00 Introduction
 
 This web server is called IcyWrench. It was completely written by myself. It is designed to support 
 modules which implement any tcp based protocol. In this case the provided module is an http server
 which can host dynamic web sites which are written in Java.
 
 
-0x01 Features
+##0x01 Features
 
 - Supports Get as well as Post requests.
 - Can return static html documents.
@@ -21,24 +22,15 @@ which can host dynamic web sites which are written in Java.
 - The web server itself is safe from a bad coded web site. If the web site fails it will show an 
   appropriate http error message. Currently supported is 400, 404, 500
 
-
-0x02 Design
-
-I'd like to point out the fact the my coding style is influenced by functional programming 
-languages like Scala. This means that I support immutable and stateless classes whenever 
-possible. A web server is a great software project to show the strengths of a more functional 
-kind of approach. The focus in this project is on data which is operated on by stateless 
-functions. This allows a clear and flexible architecture. I have used OOP everywhere I thought 
-it would lead to a better overall programming flow.
-
-
-0x03 Examples
+  
+##0x02 Examples
 
 See the demo page on the server. Default port is 12345. Access with your browser.
 
-0x04 Running Instructions
 
-Run the Web Server like this:
+##0x03 Running Instructions
+
+Start the Web Server like this:
 
 java -jar IcyWrench.jar
 
