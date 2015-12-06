@@ -1,4 +1,6 @@
 
+# Simple http sever as part of a programming assignment at the University of St Andrews
+
 0x00 Introduction
 
 This web server is called IcyWrench. It was completely written by myself. It is designed to support 
