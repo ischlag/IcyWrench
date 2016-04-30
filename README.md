@@ -1,6 +1,8 @@
 # IcyWrench
 
-A simple java based tcp sever groundwork with a simple http module for dynamic pages
+_Note: This work was part of a practical for the Object Oriented Modelling, Design and Programming module at the University of St Andrews (CS5001)._
+
+A simple Java based TCP sever foundation with a simple http module for dynamic pages.
 
 ##0x00 Introduction
 
